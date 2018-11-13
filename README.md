@@ -31,7 +31,7 @@ $grid->foo()->video();
 $grid->foo()->audio();
 ```
 在详情页：
-
+```php
 // 这个字段将会显示成为一个视频播放器
 $show->foo()->video();
 
