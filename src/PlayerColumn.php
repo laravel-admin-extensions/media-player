@@ -3,6 +3,7 @@
 namespace Encore\Admin\MediaPlayer;
 
 use Encore\Admin\Admin;
+use Illuminate\Support\Arr;
 
 class PlayerColumn
 {
@@ -22,7 +23,7 @@ class PlayerColumn
         $locale = config('app.locale');
 
         $script = <<<SCRIPT
-            
+
 mejs.i18n.language('$locale');
 
 var config = $config;
@@ -33,7 +34,7 @@ config.success = function (player, node) {
 $('video, audio').mediaelementplayer(config);
 
 $('.modal').on('hidden.bs.modal', function () {
-    
+
     var playerId = $(this).find('.mejs__container').attr('id');
     var player = mejs.players[playerId];
     if (!player.paused) {
@@ -55,16 +56,16 @@ SCRIPT;
 
             $macro->setupScript($options);
 
-            $url = MediaPlayer::getValidUrl($value, array_get($options, 'server'));
+            $url = MediaPlayer::getValidUrl($value, Arr::get($options, 'server'));
 
-            $width = array_get($options, 'videoWidth');
-            $height = array_get($options, 'videoHeight');
+            $width = Arr::get($options, 'videoWidth');
+            $height = Arr::get($options, 'videoHeight');
 
             return <<<HTML
 <a class="btn btn-app grid-open-map" data-toggle="modal" data-target="#video-modal-{$this->getKey()}">
     <i class="fa fa-play"></i> Play
 </a>
-            
+
 <div class="modal" id="video-modal-{$this->getKey()}" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -92,10 +93,10 @@ HTML;
 
             $macro->setupScript($options);
 
-            $url = MediaPlayer::getValidUrl($value, array_get($options, 'server'));
+            $url = MediaPlayer::getValidUrl($value, Arr::get($options, 'server'));
 
-            $width = array_get($options, 'audioWidth');
-            $height = array_get($options, 'audioHeight');
+            $width = Arr::get($options, 'audioWidth');
+            $height = Arr::get($options, 'audioHeight');
 
             return <<<HTML
 <audio src="$url" width="{$width}" height="{$height}"></audio>
