@@ -3,6 +3,7 @@
 namespace Encore\Admin\MediaPlayer;
 
 use Encore\Admin\Admin;
+use Illuminate\Support\Arr;
 
 class PlayerColumn
 {
@@ -55,10 +56,10 @@ SCRIPT;
 
             $macro->setupScript($options);
 
-            $url = MediaPlayer::getValidUrl($value, array_get($options, 'server'));
+            $url = MediaPlayer::getValidUrl($value,  Arr::get($options, 'server'));
 
-            $width = array_get($options, 'videoWidth');
-            $height = array_get($options, 'videoHeight');
+            $width = Arr::get($options, 'videoWidth');
+            $height = Arr::get($options, 'videoHeight');
 
             return <<<HTML
 <a class="btn btn-app grid-open-map" data-toggle="modal" data-target="#video-modal-{$this->getKey()}">
@@ -92,10 +93,10 @@ HTML;
 
             $macro->setupScript($options);
 
-            $url = MediaPlayer::getValidUrl($value, array_get($options, 'server'));
+            $url = MediaPlayer::getValidUrl($value, Arr::get($options, 'server'));
 
-            $width = array_get($options, 'audioWidth');
-            $height = array_get($options, 'audioHeight');
+            $width = Arr::get($options, 'audioWidth');
+            $height = Arr::get($options, 'audioHeight');
 
             return <<<HTML
 <audio src="$url" width="{$width}" height="{$height}"></audio>
