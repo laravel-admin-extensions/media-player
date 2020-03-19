@@ -3,6 +3,7 @@
 namespace Encore\Admin\MediaPlayer;
 
 use Encore\Admin\Admin;
+use Illuminate\Support\Arr;
 
 class PlayerField
 {
@@ -48,7 +49,7 @@ SCRIPT;
 
                 $field->wrapped = false;
 
-                $url = MediaPlayer::getValidUrl($value, array_get($options, 'server'));
+                $url = MediaPlayer::getValidUrl($value, Arr::get($options, 'server'));
 
                 return <<<HTML
 <video src="$url" width="960px" height="540px"></video>
@@ -71,7 +72,7 @@ HTML;
 
                 $field->wrapped = false;
 
-                $url = MediaPlayer::getValidUrl($value, array_get($options, 'server'));
+                $url = MediaPlayer::getValidUrl($value, Arr::get($options, 'server'));
 
                 return <<<HTML
 <audio src="$url"></audio>
