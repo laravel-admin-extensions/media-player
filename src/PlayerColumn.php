@@ -23,7 +23,7 @@ class PlayerColumn
         $locale = config('app.locale');
 
         $script = <<<SCRIPT
-            
+
 mejs.i18n.language('$locale');
 
 var config = $config;
@@ -34,7 +34,7 @@ config.success = function (player, node) {
 $('video, audio').mediaelementplayer(config);
 
 $('.modal').on('hidden.bs.modal', function () {
-    
+
     var playerId = $(this).find('.mejs__container').attr('id');
     var player = mejs.players[playerId];
     if (!player.paused) {
@@ -56,7 +56,7 @@ SCRIPT;
 
             $macro->setupScript($options);
 
-            $url = MediaPlayer::getValidUrl($value,  Arr::get($options, 'server'));
+            $url = MediaPlayer::getValidUrl($value, Arr::get($options, 'server'));
 
             $width = Arr::get($options, 'videoWidth');
             $height = Arr::get($options, 'videoHeight');
@@ -65,7 +65,7 @@ SCRIPT;
 <a class="btn btn-app grid-open-map" data-toggle="modal" data-target="#video-modal-{$this->getKey()}">
     <i class="fa fa-play"></i> Play
 </a>
-            
+
 <div class="modal" id="video-modal-{$this->getKey()}" tabindex="-1">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
